@@ -1,8 +1,22 @@
 @tailwind base;
 @tailwind components;
+
+@layer components {
+    [x-cloak] {
+        @apply hidden;
+    }
+}
+
 @tailwind utilities;
 
 @font-face {
     font-family: Rowdies;
     src: url(../../public/fonts/Rowdies-Regular.ttf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Rowdies;
+    src: url(../../public/fonts/Rowdies-Light.ttf);
+    font-weight: 300;
 }

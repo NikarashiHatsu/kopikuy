@@ -1,7 +1,7 @@
 <div class="w-full min-h-screen">
-    <div class="grid grid-cols-9 grid-rows-2 min-h-screen">
+    <div class="grid grid-cols-6 xl:grid-cols-9 grid-rows-2 min-h-screen">
         <div
-            class="col-span-9 lg:col-span-3 row-span-2 bg-zinc-100 flex items-center justify-center"
+            class="col-span-6 xl:col-span-3 row-span-2 bg-zinc-100 flex items-center justify-center min-h-[32rem]"
             style="
                 background:
                     linear-gradient(0, #1c191788, #1c191788),
@@ -16,9 +16,9 @@
             </button>
         </div>
 
-        <div class="col-span-9 lg:col-span-6 row-span-1 px-8 py-4 bg-zinc-50 prose max-w-none prose-p:mt-0">
-            <div class="flex">
-                <div class="w-1/2 flex-shrink-0">
+        <div class="col-span-6 xl:col-span-6 row-span-1 px-8 py-4 bg-zinc-50 prose max-w-none prose-p:mt-0">
+            <div class="flex flex-col sm:flex-row">
+                <div class="w-full sm:w-1/2 flex-shrink-0">
                     <h4 class="font-display uppercase flex items-center mb-6">
                         <x-phosphor-coffee class="w-8 h-8 inline mr-4" /> Client Testimonial
                     </h4>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="col-span-9 sm:col-span-6 lg:col-span-2 px-6 py-10 prose bg-stone-200">
+        <div class="col-span-6 sm:col-span-3 xl:col-span-2 px-6 py-10 prose bg-stone-200 max-w-none">
             <h2 class="font-display uppercase flex items-center">
                 Reservation...<x-phosphor-squares-four class="w-8 h-8 inline ml-4" />
             </h2>
@@ -95,12 +95,12 @@
         </div>
 
         <div
-            class="col-span-9 sm:col-span-6 lg:col-span-2 px-6 py-10 text-white prose leading-tight"
+            class="col-span-6 sm:col-span-3 xl:col-span-2 px-6 py-10 text-white prose leading-tight"
             style="
                 background:
                     linear-gradient(0, #44403cbb, #0c0a09ee),
                     url({{ asset('img/clifford-VobvKmG-StA-unsplash.jpg') }}) no-repeat;
-                background-size: contain;"
+                background-size: cover;"
         >
             <h2 class="font-display uppercase text-white flex items-center">
                 Opening Hours...<x-phosphor-clock class="w-8 h-8 inline ml-4" />
@@ -115,7 +115,7 @@
             <x-open-time day="Sunday" time="09:00 - 21:00" />
         </div>
 
-        <div class="col-span-9 sm:col-span-6 lg:col-span-2 px-6 py-10 prose bg-stone-200 relative">
+        <div class="col-span-6 xl:col-span-2 px-6 py-10 prose bg-stone-50 xl:bg-stone-200 relative max-w-none">
             <h2 class="font-display uppercase flex justify-center mb-16">
                 20% Offers...<x-phosphor-tag class="w-8 h-8 inline ml-4" />
             </h2>
@@ -123,7 +123,7 @@
             <img
                 src="{{ asset('img/amr-taha-oGDncP68cw4-unsplash.png') }}"
                 alt=""
-                class="relative w-2/3 mx-auto"
+                class="relative w-2/3 mx-auto max-h-48 object-contain"
             />
         </div>
     </div>
