@@ -1,4 +1,4 @@
-<div class="w-full min-h-screen bg-stone-200 prose max-w-none py-8">
+<div class="w-full min-h-screen bg-stone-200 prose max-w-none py-8 pb-20">
     <div class="max-w-6xl px-8 mx-auto w-full">
         <h3 class="flex items-center justify-center font-display uppercase text-center font-amber-500">
             <span>
