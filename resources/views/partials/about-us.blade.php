@@ -1,4 +1,4 @@
-<div class="w-full min-h-screen">
+<div class="w-full min-h-[800px]">
     <div class="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto w-full">
         <div class="flex flex-shrink-0 w-full md:w-8/12 px-6 md:pl-6 py-0 md:py-8 pb-8 md:pb-0 pr-0 md:pr-8 prose-sm md:prose">
             <div class="prose-p:leading-normal">
@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="flex w-full relative h-72 md:min-h-screen">
+        <div class="flex w-full relative h-72 md:min-h-[800px]">
             <img
                 src="{{ asset('img/nathan-dumlao-71u2fOofI-U-unsplash.jpg') }}"
                 alt="Coffee"

@@ -6,7 +6,7 @@
             url({{ asset('img/nathan-dumlao-6VhPY27jdps-unsplash.jpg') }}) no-repeat fixed;
         background-size: cover;"
 >
-    <div class="flex flex-col justify-center items-center max-w-6xl w-full mx-auto py-8 pt-24 px-6 min-h-screen text-white prose relative pb-24">
+    <div class="flex flex-col justify-center items-center max-w-6xl w-full mx-auto py-8 pt-24 px-6 min-h-[800px] text-white prose relative pb-24">
         <h1 class="font-display text-white uppercase text-center">
             Coffee build your<br/>
             fresh mind

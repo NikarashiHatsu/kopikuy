@@ -1,5 +1,5 @@
-<div class="w-full min-h-screen">
-    <div class="grid grid-cols-6 xl:grid-cols-9 grid-rows-2 min-h-screen">
+<div class="w-full min-h-[800px]">
+    <div class="grid grid-cols-6 xl:grid-cols-9 grid-rows-2 min-h-[800px]">
         <div
             class="col-span-6 xl:col-span-3 row-span-2 bg-zinc-100 flex items-center justify-center min-h-[32rem]"
             style="
