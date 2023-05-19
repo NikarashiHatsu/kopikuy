@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @include('partials.hero')
     @include('partials.social-media')
     @include('partials.services')
     @include('partials.about-us')
