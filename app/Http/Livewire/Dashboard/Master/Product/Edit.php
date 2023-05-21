@@ -3,25 +3,34 @@
 namespace App\Http\Livewire\Dashboard\Master\Product;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Event;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
+
     /** @var \App\Models\Product $product */
     public Product $product;
 
     /** @var array $categories */
     public array $categories = [];
 
+    /** @var array<\Illuminate\Http\UploadedFile> $images */
+    public $images = [];
+
     /** @var bool $is_open */
     public bool $is_open = false;
 
     /** @var array<string, mixed> $rules */
     protected $rules = [
+        'images.*' => ['image', 'max:2048'],
         'product.category_id' => ['required', 'exists:categories,id'],
         'product.name' => ['required', 'string'],
         'product.description' => ['required', 'string', 'min:8'],
@@ -31,7 +40,33 @@ class Edit extends Component
     /** @var array<string, mixed> $listeners */
     protected $listeners = [
         'edit_product' => 'edit_product',
+        'destroy_image' => 'destroy_image,'
     ];
+
+    /**
+     * Delete the product's image.
+     *
+     * @param string $id
+     * @return void
+     */
+    public function destroy_image(string $id)
+    {
+        try {
+            DB::beginTransaction();
+
+            Image::destroy($id);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return $this->emit('error', 'Gagal menghapus foto produk: ' . $th->getMessage());
+        }
+
+        DB::commit();
+
+        $this->product->refresh();
+
+        return $this->emit('success', 'Berhasil menghapus foto produk.');
+    }
 
     /**
      * Set the product model to the corresponding model.
@@ -48,7 +83,7 @@ class Edit extends Component
     /**
      * Update the product.
      *
-     * @return void
+     * @return \Livewire\Event;
      */
     public function update(): Event
     {
@@ -58,17 +93,28 @@ class Edit extends Component
             DB::beginTransaction();
 
             $this->product->save();
+
+            foreach ($this->images as $image) {
+                $this->product->images()->create([
+                    'filename' => $image->getClientOriginalName(),
+                    'path' => url(Storage::url($image->store('public/' . date('Y-m-d')))),
+                    'extension' => $image->getClientOriginalExtension(),
+                    'name' => $image->getClientOriginalName(),
+                    'size' => $image->getSize(),
+                ]);
+            }
         } catch (\Throwable $th) {
             DB::rollBack();
 
-            return $this->emit('error', $th->getMessage());
+            return $this->emit('error', 'Gagal memperbarui produk baru: ' . $th->getMessage());
         }
 
         DB::commit();
 
         $this->emitTo('product-data-table', 'refreshComponent');
+        $this->product->refresh();
 
-        return $this->emit('success', 'Berhasil memperbarui kategori.');
+        return $this->emit('success', 'Berhasil memperbarui produk.');
     }
 
     /**

@@ -13,6 +13,30 @@
 
             <form wire:submit.prevent="store" method="post">
                 <div class="form-control">
+                    <label for="images" class="label">
+                        <span class="label-text">
+                            Foto Produk (Multiple)
+                            <span class="text-red-500">*</span>
+                        </span>
+                    </label>
+
+                    <input
+                        id="images"
+                        class="input input-bordered w-full"
+                        type="file"
+                        wire:model="images"
+                        multiple
+                        required
+                    />
+
+                    @error('images')
+                        <p class="text-red-500 mt-2 text-xs">
+                            {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <div class="form-control">
                     <label for="product.price" class="label">
                         <span class="label-text">
                             Harga

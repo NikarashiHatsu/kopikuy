@@ -57,7 +57,8 @@ class ProductDataTable extends LivewireDatatable
      */
     public function builder(): Builder
     {
-        return Product::query();
+        return Product::query()
+            ->with(['category']);
     }
 
     /**

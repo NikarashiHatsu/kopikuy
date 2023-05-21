@@ -13,7 +13,60 @@
                     Edit Kategori
                 </h3>
 
+                <div class="grid grid-cols-2 md:grid-cols-4 grid-flow-row gap-4 mt-2">
+                    @foreach ($product->images as $image)
+                        <div class="aspect-w-1 aspect-h-1 relative">
+                            <img
+                                src="{{ $image->path }}"
+                                alt="{{ $product->name }} Image {{ $loop->iteration }}"
+                                class="w-full h-full rounded object-cover"
+                            />
+
+                            <button
+                                class="btn btn-sm btn-error rounded w-2 h-2 flex items-center justify-center absolute top-0 right-0"
+                                wire:click="$emit(
+                                    'delete',
+                                    'Hapus foto ini?',
+                                    () => { @this.call('destroy_image', '{{ $image->id }}') }
+                                )"
+                                wire:loading.attr="disabled"
+                                wire:loading.class="btn-disabled"
+                                wire:target="edit"
+                            >
+                                <x-phosphor-x-bold class="w-4 h-4 text-white flex-shrink-0 p-0" />
+                            </button>
+                        </div>
+                    @endforeach
+                </div>
+
                 <form wire:submit.prevent="update" method="post">
+                    <div class="form-control">
+                        <label for="images" class="label">
+                            <span class="label-text">
+                                Tambah Foto Produk (Multiple)
+                                <span class="text-red-500">*</span>
+                            </span>
+                        </label>
+
+                        <input
+                            id="images"
+                            class="input input-bordered w-full"
+                            type="file"
+                            wire:model="images"
+                            multiple
+                        />
+
+                        <p wire:loading wire:target="images" class="text-gray-700 text-xs mt-2">
+                            Uploading images...
+                        </p>
+
+                        @error('images')
+                            <p class="text-red-500 mt-2 text-xs">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
                     <div class="form-control">
                         <label for="product.price" class="label">
                             <span class="label-text">
@@ -119,7 +172,12 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <button type="submit" class="btn btn-primary">
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            wire:loading.class="btn-disabled"
+                            wire:loading.attr="disabled"
+                        >
                             <x-phosphor-floppy-disk class="w-4 h-4 mr-2" />
                             <span>
                                 Simpan
