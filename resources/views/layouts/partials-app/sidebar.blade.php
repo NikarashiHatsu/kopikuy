@@ -34,7 +34,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:void(0)">
+            <a href="{{ route('dashboard.master.seat.index') }}" @class(['active' => request()->routeIs('dashboard.master.seat.*')])>
                 <x-phosphor-armchair class="w-4 h-4" />
                 <span>
                     Seat
