@@ -22,6 +22,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
 
     Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
         Route::get('/category', \App\Http\Controllers\Master\CategoryController::class)->name('category.index');
+        Route::get('/product', \App\Http\Controllers\Master\ProductController::class)->name('product.index');
     });
 });
 

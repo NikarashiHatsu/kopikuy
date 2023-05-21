@@ -26,7 +26,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:void(0)">
+            <a href="{{ route('dashboard.master.product.index') }}" @class(['active' => request()->routeIs('dashboard.master.product.*')])>
                 <x-phosphor-coffee class="w-4 h-4" />
                 <span>
                     Produk
