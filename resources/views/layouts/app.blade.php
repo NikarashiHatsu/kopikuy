@@ -14,6 +14,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles()
 </head>
 
 <body class="font-sans antialiased">
@@ -29,6 +30,48 @@
             @include('layouts.partials-app.sidebar')
         </nav>
     </div>
+
+    {{ $modals ?? '' }}
+
+    @livewireScripts()
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Livewire.on('success', (message) => {
+                Swal.fire(
+                    'Berhasil!',
+                    message,
+                    'success'
+                );
+            });
+
+            Livewire.on('error', (message) => {
+                Swal.fire(
+                    'Terjadi kegagalan',
+                    message,
+                    'error'
+                );
+            });
+
+            Livewire.on('delete', (message, callback) => {
+                Swal.fire({
+                    title: 'Hapus data ini?',
+                    text: message,
+                    icon: 'question',
+                    showCancelButton: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        return callback();
+                    }
+
+                    return Swal.fire(
+                        'Dibatalkan',
+                        'Data tidak jadi dihapus',
+                        'info'
+                    );
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

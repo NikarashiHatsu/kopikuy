@@ -19,6 +19,10 @@ Route::get('/', IndexController::class);
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['auth', 'verified']], function () {
     Route::get('/', App\Http\Controllers\DashboardController::class)->name('index');
+
+    Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
+        Route::resource('/category', \App\Http\Controllers\Master\CategoryController::class)->except('show');
+    });
 });
 
 Route::middleware('auth')->group(function () {

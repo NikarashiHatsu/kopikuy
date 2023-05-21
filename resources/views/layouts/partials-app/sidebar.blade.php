@@ -18,7 +18,7 @@
             Data Master
         </li>
         <li>
-            <a href="javascript:void(0)">
+            <a href="{{ route('dashboard.master.category.index') }}" @class(['active' => request()->routeIs('dashboard.master.category.*')])>
                 <x-phosphor-tag class="w-4 h-4" />
                 <span>
                     Kategori
