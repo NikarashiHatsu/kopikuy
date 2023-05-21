@@ -21,7 +21,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
     Route::get('/', App\Http\Controllers\DashboardController::class)->name('index');
 
     Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
-        Route::resource('/category', \App\Http\Controllers\Master\CategoryController::class)->except('show');
+        Route::get('/category', \App\Http\Controllers\Master\CategoryController::class)->name('category.index');
     });
 });
 
