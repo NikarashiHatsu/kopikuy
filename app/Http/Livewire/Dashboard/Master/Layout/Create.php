@@ -54,10 +54,7 @@ class Create extends Component
      */
     public function mount()
     {
-        $this->layout = new Layout([
-            'grid_w' => 20,
-            'grid_h' => 20,
-        ]);
+        $this->layout = new Layout();
     }
 
     /**
