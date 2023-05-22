@@ -15,9 +15,9 @@
 
         <livewire:layout-data-table />
 
-        <x-slot name="modals">
+        @push('modals')
             <livewire:dashboard.master.layout.create />
             <livewire:dashboard.master.layout.edit />
-        </x-slot>
+        @endpush
     </div>
 </x-app-layout>

@@ -13,6 +13,12 @@ class Create extends Component
     /** @var \App\Models\Layout $layout */
     public Layout $layout;
 
+    /** @var array<string, int> $incrementor */
+    public array $incrementor = [];
+
+    /** @var array<string, mixed> $seats */
+    public array $seats = [];
+
     /** @var array<string, mixed> $rules */
     protected $rules = [
         'layout.name' => ['required', 'string'],

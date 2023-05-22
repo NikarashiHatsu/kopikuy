@@ -16,6 +16,12 @@ class Edit extends Component
     /** @var bool $is_open */
     public bool $is_open = false;
 
+    /** @var array<string, int> $incrementor */
+    public array $incrementor = [];
+
+    /** @var array<string, mixed> $seats */
+    public array $seats = [];
+
     /** @var array<string, mixed> $rules */
     protected $rules = [
         'layout.name' => ['required', 'string'],

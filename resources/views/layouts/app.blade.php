@@ -31,7 +31,7 @@
         </nav>
     </div>
 
-    {{ $modals ?? '' }}
+    @stack('modals')
 
     @livewireScripts()
     <script>
