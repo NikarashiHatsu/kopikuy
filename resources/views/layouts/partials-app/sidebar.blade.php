@@ -42,7 +42,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:void(0)">
+            <a href="{{ route('dashboard.master.layout.index') }}" @class(['active' => request()->routeIs('dashboard.master.layout.*')])>
                 <x-phosphor-layout class="w-4 h-4" />
                 <span>
                     Layout

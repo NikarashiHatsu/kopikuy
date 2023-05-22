@@ -24,6 +24,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
         Route::get('/category', \App\Http\Controllers\Master\CategoryController::class)->name('category.index');
         Route::get('/product', \App\Http\Controllers\Master\ProductController::class)->name('product.index');
         Route::get('/seat', \App\Http\Controllers\Master\SeatController::class)->name('seat.index');
+        Route::get('/layout', \App\Http\Controllers\Master\LayoutController::class)->name('layout.index');
     });
 });
 
