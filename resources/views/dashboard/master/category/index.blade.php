@@ -15,9 +15,9 @@
 
         <livewire:category-data-table />
 
-        <x-slot name="modals">
+        @push('modals')
             <livewire:dashboard.master.category.create />
             <livewire:dashboard.master.category.edit />
-        </x-slot>
+        @endpush
     </div>
 </x-app-layout>
