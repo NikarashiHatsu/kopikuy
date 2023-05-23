@@ -97,7 +97,7 @@
             Pengaturan
         </li>
         <li>
-            <a href="javascript:void(0)">
+            <a href="{{ route('dashboard.settings.web.index') }}" @class(['active' => request()->routeIs('dashboard.settings.web.*')])>
                 <x-phosphor-gear class="w-4 h-4" />
                 <span>
                     Pengaturan Web

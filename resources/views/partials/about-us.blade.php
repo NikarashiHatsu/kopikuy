@@ -12,15 +12,11 @@
                 </h3>
 
                 <h1 class="font-display font-light uppercase">
-                    There is all about<br />
-                    {{ config('app.name') }}
+                    {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsTitle') }}
                 </h1>
 
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-                    ullam deleniti, nesciunt explicabo pariatur quasi eum dignissimos
-                    modi totam quae voluptatibus, esse repellendus numquam! Enim eos
-                    corporis qui molestias vitae.
+                    {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsDescription') }}
                 </p>
 
                 <h3 class="flex items-center font-display font-light uppercase">
@@ -28,13 +24,12 @@
                         <x-phosphor-check-square class="w-6 h-6 mr-2" />
                     </span>
                     <span>
-                        Lorem, ipsum dolor sit amet.
+                        {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsFeat1Title') }}
                     </span>
                 </h3>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta
-                    voluptatibus praesentium inventore quaerat officiis veniam maxime.
+                    {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsFeat1Description') }}
                 </p>
 
                 <h3 class="flex items-center font-display font-light uppercase">
@@ -42,30 +37,31 @@
                         <x-phosphor-check-square class="w-6 h-6 mr-2" />
                     </span>
                     <span>
-                        Lorem, ipsum dolor sit amet.
+                        {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsFeat2Title') }}
                     </span>
                 </h3>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nobis
-                    blanditiis quibusdam, quas distinctio recusandae maxime nostrum eius
-                    aut minus nulla sed ipsum doloribus eos beatae necessitatibus!
+                    {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsFeat2Description') }}
                 </p>
 
                 <div class="flex flex-col-reverse sm:flex-row items-center">
-                    <button class="transition duration-300 ease-in-out bg-amber-600 hover:bg-amber-700 rounded text-white inline px-5 py-3 uppercase font-bold w-52">
-                        Learn More
-                    </button>
+                    <a
+                        href="{{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsPrimaryButtonAction') }}"
+                        class="transition duration-300 ease-in-out bg-amber-600 hover:bg-amber-700 rounded flex items-center justify-center !no-underline !text-white px-5 py-3 uppercase !font-bold w-52"
+                    >
+                        {{ \App\Services\AppService::get_prop($props, 'Nama', 'AboutUsPrimaryButtonDescription') }}
+                    </a>
 
                     <div class="flex items-center ml-0 sm:ml-16">
                         <img
                             class="w-16 h-16 rounded-full"
-                            src="{{ asset('img/240992716_584676879568706_8566206807420594897_n.jpeg') }}"
+                            src="{{ \App\Services\AppService::get_prop($props, 'Nama', 'SecretaryImage') }}"
                         />
 
                         <div class="flex flex-col ml-4 leading-normal">
-                            <span class="font-semibold">Name of Founder</span>
-                            <span class="text-amber-600">Founder & CEO</span>
+                            <span class="font-semibold">{{ \App\Services\AppService::get_prop($props, 'Nama', 'SecretaryName') }}</span>
+                            <span class="text-amber-600">{{ \App\Services\AppService::get_prop($props, 'Nama', 'SecretaryDescription') }}</span>
                         </div>
                     </div>
                 </div>

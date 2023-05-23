@@ -26,6 +26,10 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'middleware' => ['a
         Route::get('/seat', \App\Http\Controllers\Master\SeatController::class)->name('seat.index');
         Route::get('/layout', \App\Http\Controllers\Master\LayoutController::class)->name('layout.index');
     });
+
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+        Route::get('/web', \App\Http\Controllers\Settings\WebController::class)->name('web.index');
+    });
 });
 
 Route::middleware('auth')->group(function () {

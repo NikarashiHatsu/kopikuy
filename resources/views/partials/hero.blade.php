@@ -8,23 +8,27 @@
 
             <div class="w-full absolute top-1/4 px-16 max-w-prose">
                 <h1 class="font-display font-light uppercase text-white leading-tight text-5xl">
-                    Time to discover
-                    the best coffeeshop
-                    in Cirebon
+                    {{ \App\Services\AppService::get_prop($props, 'Nama', 'HeroTitle') }}
                 </h1>
 
                 <p class="text-white">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam corporis perspiciatis quia. Nisi fuga facere officia voluptates voluptas quasi enim quam provident, totam nihil similique culpa harum necessitatibus asperiores laudantium?
+                    {{ \App\Services\AppService::get_prop($props, 'Nama', 'HeroDescription') }}
                 </p>
 
                 <div class="flex">
-                    <button class="transition duration-300 ease-in-out px-3 py-3 w-52 bg-amber-600 hover:bg-amber-700 text-white uppercase font-semibold rounded">
-                        Discover
-                    </button>
+                    <a
+                        href="{{ \App\Services\AppService::get_prop($props, 'Nama', 'HeroPrimaryAction') }}"
+                        class="transition duration-300 no-underline ease-in-out flex items-center justify-center px-3 py-3 w-52 bg-amber-600 hover:bg-amber-700 text-white uppercase font-bold rounded"
+                    >
+                        {{ \App\Services\AppService::get_prop($props, 'Nama', 'HeroPrimaryButton') }}
+                    </a>
 
-                    <button class="transition duration-300 ease-in-out px-3 py-3 w-52 bg-transparent hover:bg-white text-white hover:text-gray-700 uppercase font-semibold rounded border-2 border-white ml-4">
-                        Reserve
-                    </button>
+                    <a
+                        href="{{ \App\Services\AppService::get_prop($props, 'Nama', 'HeroSecondaryAction') }}"
+                        class="transition duration-300 no-underline ease-in-out flex items-center justify-center px-3 py-3 w-52 bg-transparent hover:bg-white text-white hover:text-gray-700 uppercase font-bold rounded border-2 border-white ml-4"
+                    >
+                        {{ \App\Services\AppService::get_prop($props, 'Nama', 'HeroSecondaryButton') }}
+                    </a>
                 </div>
             </div>
         </div>

@@ -8,12 +8,15 @@
                     url({{ asset('img/nathan-dumlao-Y3AqmbmtLQI-unsplash.jpg') }}) no-repeat;
                 background-size: cover;"
         >
-            <button class="flex flex-col items-center text-white">
+            <a
+                href="{{ \App\Services\AppService::get_prop($props, 'Nama', 'TestimonialVideo') }}"
+                class="flex flex-col items-center text-white"
+            >
                 <x-phosphor-play-circle-thin class="inline w-24 h-24 text-white" />
                 <span class="mt-2">
                     Play Video
                 </span>
-            </button>
+            </a>
         </div>
 
         <div class="col-span-6 xl:col-span-6 row-span-1 px-8 py-4 bg-zinc-50 prose max-w-none prose-p:mt-0">
@@ -24,16 +27,11 @@
                     </h4>
 
                     <h1 class="font-display uppercase">
-                        Divine Aroma in<br/>
-                        every single cup
+                        {{ \App\Services\AppService::get_prop($props, 'Nama', 'TestimonialTitle') }}
                     </h1>
 
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic velit maiores necessitatibus. Magnam laboriosam minus, eligendi et perferendis, aperiam error, quia pariatur vitae alias similique dignissimos odit tempora repudiandae eum.
-                    </p>
-
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus eveniet suscipit, vero facilis earum odit esse nesciunt illum. Accusantium nobis laudantium iste laborum similique vero quis eligendi consequuntur assumenda debitis?
+                        {!! \App\Services\AppService::get_prop($props, 'Nama', 'TestimonialDescription') !!}
                     </p>
                 </div>
 
@@ -54,13 +52,16 @@
 
             <x-contact
                 :contact1="[
-                    'href' => 'tel:+6285155332844',
-                    'text' => '+62-851-5533-2844 (Aghits)',
+                    'href' => 'tel:+' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak')[0]['Value'],
+                    'text' => \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak')[0]['Value'] . ' (' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak')[0]['Nama'] . ')',
                 ]"
-                :contact2="[
-                    'href' => 'tel:+6285155332844',
-                    'text' => '+62-851-5533-2844 (Dian)',
-                ]"
+                :contact2="
+                    ! empty(\App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak'))
+                    ? [
+                        'href' => 'tel:+' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak')[1]['Value'],
+                        'text' => \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak')[1]['Value'] . ' (' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'kontak')[1]['Nama'] . ')',
+                    ]
+                    : []"
             >
                 <x-slot:icon>
                     <x-phosphor-phone-fill class="w-6 h-6 text-amber-400" />
@@ -69,13 +70,16 @@
 
             <x-contact
                 :contact1="[
-                    'href' => 'mailto:yourlovelydev@gmail.com',
-                    'text' => 'yourlovelydev@gmail.com (Aghits)',
+                    'href' => 'mailto:' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email')[0]['Value'],
+                    'text' => \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email')[0]['Value'] . ' (' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email')[0]['Nama'] . ')',
                 ]"
-                :contact2="[
-                    'href' => 'mailto:dian@umc.ac.id',
-                    'text' => 'dian@umc.ac.id (Dian)',
-                ]"
+                :contact2="
+                    ! empty(\App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email'))
+                    ? [
+                        'href' => 'mailto:' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email')[1]['Value'],
+                        'text' => \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email')[1]['Value'] . ' (' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'email')[1]['Nama'] . ')',
+                    ]
+                    : []"
             >
                 <x-slot:icon>
                     <x-phosphor-envelope-fill class="w-6 h-6 text-amber-400" />
@@ -85,7 +89,7 @@
             <x-contact
                 :contact1="[
                     'href' => 'javascript:void(0)',
-                    'text' => 'Gg. Sijarak Jl. Kp. Melati No.7a, Kesambi, Kec. Kesambi, Kota Cirebon, Jawa Barat 45134',
+                    'text' => \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'alamat')[0]['Value'] . ' (' . \App\Services\AppService::get_prop_values($reservation_contacts, 'Tipe', 'alamat')[0]['Value'] . ')',
                 ]"
             >
                 <x-slot:icon>
@@ -106,13 +110,13 @@
                 Opening Hours...<x-phosphor-clock class="w-8 h-8 inline ml-4" />
             </h2>
 
-            <x-open-time day="Monday" time="09:00 - 21:00" holiday="true" />
-            <x-open-time day="Tuesday" time="09:00 - 21:00" />
-            <x-open-time day="Wednesday" time="09:00 - 21:00" />
-            <x-open-time day="Thursday" time="09:00 - 21:00" />
-            <x-open-time day="Friday" time="09:00 - 21:00" />
-            <x-open-time day="Saturday" time="09:00 - 21:00" />
-            <x-open-time day="Sunday" time="09:00 - 21:00" />
+            @foreach ($jadwal as $j)
+                <x-open-time
+                    :day="$j['Hari']"
+                    :time="$j['Waktu']"
+                    :holiday="$j['Libur']"
+                />
+            @endforeach
         </div>
 
         <div class="col-span-6 xl:col-span-2 px-6 py-10 prose bg-stone-50 xl:bg-stone-200 relative max-w-none">

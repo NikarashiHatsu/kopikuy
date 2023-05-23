@@ -36,8 +36,7 @@
                     <x-application-logo class="prose" />
                 </h2>
                 <p class="break-words">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aliquam minus accusantium porro sint beatae quam.
+                    {{ \App\Services\AppService::get_prop($about_us_short_description, 'Nama', 'AboutUsShortDescription') }}
                 </p>
                 <div>
                     Social medias
@@ -46,20 +45,21 @@
 
             <div class="col-span-12 md:col-span-6 xl:col-span-3">
                 <h2 class="text-white font-display uppercase">Contact us</h2>
-                <p>Address: </p>
-                <p>Email: </p>
-                <p>Phone: </p>
+                <p>Address: {{ \App\Services\AppService::get_prop($kontak, 'Tipe', 'alamat') }}</p>
+                <p>Email: {{ \App\Services\AppService::get_prop($kontak, 'Tipe', 'email') }}</p>
+                <p>Phone: {{ \App\Services\AppService::get_prop($kontak, 'Tipe', 'kontak') }}</p>
             </div>
 
             <div class="col-span-12 md:col-span-6 xl:col-span-3">
                 <h2 class="text-white font-display uppercase">Opening hours</h2>
-                <x-open-time day="Monday" time="09:00 - 21:00" holiday="true" />
-                <x-open-time day="Tuesday" time="09:00 - 21:00" />
-                <x-open-time day="Wednesday" time="09:00 - 21:00" />
-                <x-open-time day="Thursday" time="09:00 - 21:00" />
-                <x-open-time day="Friday" time="09:00 - 21:00" />
-                <x-open-time day="Saturday" time="09:00 - 21:00" />
-                <x-open-time day="Sunday" time="09:00 - 21:00" />
+
+                @foreach ($jadwal as $j)
+                    <x-open-time
+                        :day="$j['Hari']"
+                        :time="$j['Waktu']"
+                        :holiday="$j['Libur']"
+                    />
+                @endforeach
             </div>
 
             <div class="col-span-12 md:col-span-6 xl:col-span-3">
